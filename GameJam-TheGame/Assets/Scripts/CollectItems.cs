@@ -37,6 +37,17 @@ public class CollectItems : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI TimerText;
 
+    [Space]
+
+    [SerializeField]
+    private TextMeshProUGUI FinishText;
+    [SerializeField]
+    private TextMeshProUGUI ThanksText;
+    private bool Finished = false;
+    private float beforeTransition = 5.0f;
+    private bool FtimerIsRunning = false;
+
+
     private void Start()
     {
         seeWalls = GameObject.FindGameObjectsWithTag("SeeThroughWall");
@@ -56,16 +67,7 @@ public class CollectItems : MonoBehaviour
         {
             if(GhostTime > 0)
             {
-                Debug.Log("GhostMode Active");
-
                 DisplayTime(GhostTime);
-                this.GetComponent<MeshRenderer>().material = ghostMaterial;
-                for(int i = 0; i < seeWalls.Length; i++)
-                {
-                    seeWalls[i].GetComponent<MeshRenderer>().material = regularWallMaterial;
-                    seeWalls[i].GetComponent<Collider>().enabled = true;
-                }
-                
                 GhostTime -= Time.deltaTime;
             } else
             {
@@ -83,8 +85,17 @@ public class CollectItems : MonoBehaviour
                 GhostMode = false;
                 timerIsRunning = false;
             }
+        }
 
-            
+        if(Finished && FtimerIsRunning)
+        {
+            if(beforeTransition > 0)
+            {
+                beforeTransition -= Time.deltaTime;
+            } else
+            {
+                SceneManager.LoadScene(0);
+            }
         }
     }
 
@@ -105,11 +116,23 @@ public class CollectItems : MonoBehaviour
             //Trigger ghostmode;
             GhostMode = true;
             timerIsRunning = true;
+            Debug.Log("GhostMode Active");
+            this.GetComponent<MeshRenderer>().material = ghostMaterial;
+            for (int i = 0; i < seeWalls.Length; i++)
+            {
+                seeWalls[i].GetComponent<MeshRenderer>().material = regularWallMaterial;
+                seeWalls[i].GetComponent<Collider>().enabled = true;
+            }
+
         }
 
-        if(other.tag == "Finish")
+        if (other.tag == "Finish")
         {
-            SceneManager.LoadScene(0);
+            Finished = true;
+            FtimerIsRunning = true;
+
+            FinishText.enabled = true;
+            ThanksText.enabled = true;
         }
     }
 
