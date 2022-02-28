@@ -7,6 +7,7 @@ TagManager:
   - Coins
   - GhostPower
   - SeeThroughWall
+  - Music
   layers:
   - Default
   - TransparentFX

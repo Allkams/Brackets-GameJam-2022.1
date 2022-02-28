@@ -14,6 +14,8 @@ public class CollectItems : MonoBehaviour
 
     [Space]
 
+    [SerializeField, Tooltip("The sound when entering ghostmode")]
+    private AudioSource ghostModeSound;
     [SerializeField, Tooltip("The time you will be a ghost in seconds.")]
     private float GhostTime = 10.0f;
     [SerializeField]
@@ -39,6 +41,8 @@ public class CollectItems : MonoBehaviour
 
     [Space]
 
+    [SerializeField, Tooltip("Sound when Finish.")]
+    private AudioSource finishSound;
     [SerializeField]
     private TextMeshProUGUI FinishText;
     [SerializeField]
@@ -46,7 +50,6 @@ public class CollectItems : MonoBehaviour
     private bool Finished = false;
     private float beforeTransition = 5.0f;
     private bool FtimerIsRunning = false;
-
 
     private void Start()
     {
@@ -111,9 +114,13 @@ public class CollectItems : MonoBehaviour
             coins++;
         }
 
-        if(other.tag == "GhostPower")
+        if(other.tag == "GhostPower" && !timerIsRunning)
         {
             //Trigger ghostmode;
+            if(ghostModeSound != null)
+            {
+                ghostModeSound.Play();
+            }
             GhostMode = true;
             timerIsRunning = true;
             Debug.Log("GhostMode Active");
@@ -128,6 +135,10 @@ public class CollectItems : MonoBehaviour
 
         if (other.tag == "Finish")
         {
+            if(finishSound != null)
+            {
+                finishSound.Play();
+            }
             Finished = true;
             FtimerIsRunning = true;
 

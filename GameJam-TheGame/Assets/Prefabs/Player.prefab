@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6749412458047558076}
   - component: {fileID: 6749412458047558077}
   - component: {fileID: 6749412458047558074}
+  - component: {fileID: 414293937}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -50,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   jumpHeight: 1
+  jumpSound: {fileID: 290505669103682334, guid: 2beab7afeb30e034aaa92fd51c1fe518, type: 3}
 --- !u!114 &6749412458047558075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,3 +194,27 @@ CharacterController:
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &414293937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6749412458047558072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 242bf22b6971ec54bb72154bb5558534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 5364863684391195383, guid: c80f6c36abfab54458230e2578b873ac, type: 3}
+  coinHandler: {fileID: 0}
+  ghostModeSound: {fileID: 5979720318444637671, guid: e8060ac455a57bf41aa08280400253c7, type: 3}
+  GhostTime: 10
+  nonGhostMaterial: {fileID: 2100000, guid: ca13c76e226657d4780c563da91d55c7, type: 2}
+  ghostMaterial: {fileID: 2100000, guid: 1eace87d5cb4f1840b41244f6df372f7, type: 2}
+  regularWallMaterial: {fileID: 2100000, guid: a740591e920e9f24988590bdd7f07255, type: 2}
+  seeThroughMaterial: {fileID: 2100000, guid: 69828b02f58eb9c4aae88c10ff14b13a, type: 2}
+  TimerText: {fileID: 0}
+  finishSound: {fileID: 1361024979443307362, guid: a75b6023c78490e4883d8d7801b7cecf, type: 3}
+  FinishText: {fileID: 0}
+  ThanksText: {fileID: 0}

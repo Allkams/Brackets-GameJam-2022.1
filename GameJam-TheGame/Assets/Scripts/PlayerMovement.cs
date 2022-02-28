@@ -24,6 +24,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 currentInputVec;
     private Vector2 smoothVelocity;
 
+    [Space]
+
+    [SerializeField, Tooltip("Sound when jump.")]
+    private AudioSource jumpSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +65,10 @@ public class PlayerMovement : MonoBehaviour
 
         if(jumped && groundedPlayer)
         {
+            if (jumpSound)
+            {
+                jumpSound.Play();
+            }
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }
 
