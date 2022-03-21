@@ -75,4 +75,12 @@ public class PlayerMovement : MonoBehaviour
         playerVelocity.y += gravity * Time.deltaTime;
         PlayerControll.Move(playerVelocity * Time.deltaTime);
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.moveDirection.y > 0)
+        {
+            playerVelocity.y = 0f;
+        }
+    }
 }

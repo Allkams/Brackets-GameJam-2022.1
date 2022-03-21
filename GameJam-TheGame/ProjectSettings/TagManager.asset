@@ -8,6 +8,7 @@ TagManager:
   - GhostPower
   - SeeThroughWall
   - Music
+  - SeeThtoughWallBig
   layers:
   - Default
   - TransparentFX

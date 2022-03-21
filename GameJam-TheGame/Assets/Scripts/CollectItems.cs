@@ -77,6 +77,8 @@ public class CollectItems : MonoBehaviour
                 Debug.Log("Ghostmode Disabled");
 
                 this.GetComponent<MeshRenderer>().material = nonGhostMaterial;
+                this.GetComponent<TrailRenderer>().startColor = nonGhostMaterial.color;
+                this.GetComponent<TrailRenderer>().endColor = nonGhostMaterial.color;
                 for (int i = 0; i < seeWalls.Length; i++)
                 {
                     seeWalls[i].GetComponent<MeshRenderer>().material = seeThroughMaterial;
@@ -125,6 +127,8 @@ public class CollectItems : MonoBehaviour
             timerIsRunning = true;
             Debug.Log("GhostMode Active");
             this.GetComponent<MeshRenderer>().material = ghostMaterial;
+            this.GetComponent<TrailRenderer>().startColor = ghostMaterial.color;
+            this.GetComponent<TrailRenderer>().endColor = ghostMaterial.color;
             for (int i = 0; i < seeWalls.Length; i++)
             {
                 seeWalls[i].GetComponent<MeshRenderer>().material = regularWallMaterial;

@@ -28,13 +28,16 @@ public class CutoutObject : MonoBehaviour
 
         for(int i = 0; i < hitObjects.Length; ++i)
         {
-            Material[] materials = hitObjects[i].transform.GetComponent<Renderer>().materials;
-
-            for(int j = 0; j < materials.Length; ++j)
+            if(hitObjects[i].transform.GetComponent<Renderer>() != null)
             {
-                materials[j].SetVector("_CutoutPos", cutoutPos);
-                materials[j].SetFloat("_CutoutSize", 0.1f);
-                materials[j].SetFloat("_FalloffSize", 0.05f);
+                Material[] materials = hitObjects[i].transform.GetComponent<Renderer>().materials;
+
+                for(int j = 0; j < materials.Length; ++j)
+                {
+                    materials[j].SetVector("_CutoutPos", cutoutPos);
+                    materials[j].SetFloat("_CutoutSize", 0.1f);
+                    materials[j].SetFloat("_FalloffSize", 0.05f);
+                }
             }
         }
     }
