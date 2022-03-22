@@ -18,6 +18,7 @@ public class CollectItems : MonoBehaviour
     private AudioSource ghostModeSound;
     [SerializeField, Tooltip("The time you will be a ghost in seconds.")]
     private float GhostTime = 10.0f;
+    private float GhostTimeLeft;
     [SerializeField]
     private Material nonGhostMaterial;
     [SerializeField]
@@ -53,6 +54,8 @@ public class CollectItems : MonoBehaviour
 
     private void Start()
     {
+        GhostTimeLeft = GhostTime;
+
         seeWalls = GameObject.FindGameObjectsWithTag("SeeThroughWall");
         for (int i = 0; i < seeWalls.Length; i++)
         {
@@ -68,10 +71,10 @@ public class CollectItems : MonoBehaviour
 
         if(GhostMode && timerIsRunning)
         {
-            if(GhostTime > 0)
+            if(GhostTimeLeft > 0)
             {
-                DisplayTime(GhostTime);
-                GhostTime -= Time.deltaTime;
+                DisplayTime(GhostTimeLeft);
+                GhostTimeLeft -= Time.deltaTime;
             } else
             {
                 Debug.Log("Ghostmode Disabled");
@@ -86,7 +89,7 @@ public class CollectItems : MonoBehaviour
                 }
 
                 TimerText.alpha = 0;
-                GhostTime = 10.0f;
+                GhostTimeLeft = GhostTime;
                 GhostMode = false;
                 timerIsRunning = false;
             }
@@ -116,9 +119,12 @@ public class CollectItems : MonoBehaviour
             coins++;
         }
 
-        if(other.tag == "GhostPower" && !timerIsRunning)
+        if (other.tag == "GhostPower" && (!timerIsRunning || GhostTimeLeft < 9.0f))
         {
-            //Trigger ghostmode;
+            if(timerIsRunning)
+            {
+                GhostTimeLeft = GhostTime;
+            }
             if(ghostModeSound != null)
             {
                 ghostModeSound.Play();

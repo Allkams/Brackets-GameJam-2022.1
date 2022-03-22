@@ -4,25 +4,24 @@ using UnityEngine.UI;
 
 public class SetVolume : MonoBehaviour
 {
-    public AudioMixer Mixer;
-    float value = 0.5f;
+    [SerializeField]
+    private AudioMixer Mixer;
 
-    public void Awake()
+    [SerializeField]
+    private string volumeName;
+
+    [SerializeField]
+    private float standardValue = 0.5f;
+
+    public void Start()
     {
-        bool result = Mixer.GetFloat("MyMasterVol", out value);
-        if(result)
-        {
-            Debug.Log("Value set!");
-            this.GetComponent<Slider>().value = Mathf.Abs(value/20);
-        } else
-        {
-            Debug.Log("Value not set!");
-            Debug.Log(value);
-            this.GetComponent<Slider>().value = value;
-        }
+        this.GetComponent<Slider>().value = PlayerPrefs.GetFloat(volumeName, standardValue);
+        Debug.Log("Level set: " + PlayerPrefs.GetFloat(volumeName));
     }
     public void SetLevel(float sliderValue)
     {
-        Mixer.SetFloat("MyMasterVol", Mathf.Log10(sliderValue)*20);
+        Mixer.SetFloat(volumeName, Mathf.Log10(sliderValue)*20);
+        PlayerPrefs.SetFloat(volumeName, sliderValue);
+        Debug.Log("Level Changed:" + " Master: " + (Mathf.Log10(sliderValue) * 20) + " slider: " + sliderValue);
     }
 }
