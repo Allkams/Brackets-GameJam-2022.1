@@ -3751,8 +3751,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 653.5, y: 298}
-  m_SizeDelta: {x: 1307, y: 596}
+  m_AnchoredPosition: {x: 0, y: 298}
+  m_SizeDelta: {x: 0, y: 596}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1182579503
 MonoBehaviour:
@@ -4841,7 +4841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.45882353, g: 0.45882353, b: 0.45882353, a: 0.92941177}
+  m_Color: {r: 0.45882353, g: 0.45882353, b: 0.45882353, a: 0.9019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5672,6 +5672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelContainer: {fileID: 8198965498393558685, guid: a960188903a94c447975128183780a73, type: 3}
+  GameLoadScript: {fileID: 0}
 --- !u!1 &2019852304
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ public class ListLevels : MonoBehaviour
 {
     [SerializeField]
     private GameObject LevelContainer;
+    [SerializeField]
+    private MainMenu GameLoadScript;
 
     private int LevelID;
 
@@ -26,6 +28,9 @@ public class ListLevels : MonoBehaviour
             level.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "0/0";
             level.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00:000";
 
+            level.transform.GetComponent<Button>().onClick.AddListener(() => { Debug.Log("Level:" + i); });
+            level.GetComponent<Button>().onClick.AddListener(() => { Debug.Log("Test"); });
+       
         }
 
         this.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(1088.29f, 100 + (63 * LevelID) + 4);
